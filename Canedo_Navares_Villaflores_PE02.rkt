@@ -38,15 +38,17 @@
 ;;; ITEM B:
 
 
+(define (check-divisor num d)
+    (cond
+        ((> (* d d) num) #t)
+        ((= (modulo num d) 0) #f)
+        (else (check-divisor num (+ d 1)))))
+
+
 (define (prime? num)
-    (define (check-divisor d)
-        (cond
-            ((> (* d d) num) #t)
-            ((= (modulo num d) 0) #f)
-            (else (check-divisor (+ d 1)))))
     (if (< num 2)
         #f
-        (check-divisor 2)))
+        (check-divisor num 2)))
 
 
 (define (sumprimes-aux currN result)
