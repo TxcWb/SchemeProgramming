@@ -2,9 +2,12 @@
 
 TARGET = Canedo_Navares_Villaflores_PE02.rkt
 
-.PHONY: all
+.PHONY: scheme racket
 
 
-all: $(TARGET)
+scheme: $(TARGET)
 	scheme --quiet < $<
+
+racket: $(TARGET)
+	racket -I r5rs -r $<
 
