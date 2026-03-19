@@ -13,6 +13,10 @@ There are two options for running the code.
 
 If you have make installed, then simply run the make command from the terminal. It will automatically run the script.
 
+```
+make
+```
+
 Otherwise, run the following command in the terminal:
 
 ```
