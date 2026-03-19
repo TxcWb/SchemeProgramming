@@ -21,17 +21,17 @@
 ;;; EXAMPLE
 ;;;     (T-Ice 10) => (1 "T" "ICE" "T" 5 "T-ICE" 7 "T" "ICE" "T")
 (define (T-Ice n)
-  (local [(define (loop currN result)
+    (define (loop currN result)
             (cond 
-              [(= currN 0) result] 
-              [else 
-               (let ([ans (cond 
-                            [(and (= (modulo currN 2) 0) (= (modulo currN 3) 0)) "T-ICE"]
-                            [(= (modulo currN 2) 0) "T"]
-                            [(= (modulo currN 3) 0) "ICE"]
-                            [else currN])])
-                 (loop (- currN 1) (cons ans result)))]))] 
-    (loop n empty))) 
+                ((= currN 0) result)
+                (else 
+                    (let ((ans (cond 
+                                    ((and (= (modulo currN 2) 0) (= (modulo currN 3) 0)) "T-ICE")
+                                    ((= (modulo currN 2) 0) "T")
+                                    ((= (modulo currN 3) 0) "ICE")
+                                    (else currN))))
+                         (loop (- currN 1) (cons ans result))))))
+    (loop n '()))
 
 
 ;;; ITEM B:
@@ -58,14 +58,14 @@
 ;;; EXAMPLE
 ;;;     (count-factors 64 2) => 6
 (define (count-factors n m)
-  (local [(define (loop newN result)
+    (define (loop newN result)
             (cond 
-              [(= newN 0) result] 
-              [else
-               (cond 
-                 [(not (= (modulo newN m) 0)) result] 
-                 [else (loop (/ newN m) (+ result 1))])]))] 
-          (loop n 0))) 
+                ((= newN 0) result)
+                (else
+                    (cond 
+                        ((not (= (modulo newN m) 0)) result)
+                        (else (loop (/ newN m) (+ result 1)))))))
+    (loop n 0))
 
 
 ;;; ITEM D:
