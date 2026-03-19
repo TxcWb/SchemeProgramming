@@ -109,6 +109,14 @@
 
 ;;; ITEM D:
 
+(define (my-sums-aux lis acc)
+    (cond
+        ((null? lis) acc)
+        ((list? (car lis)) (my-sums-aux (cdr lis) (my-sums-aux (car lis) acc)))
+        ((number? (car lis)) (my-sums-aux (cdr lis) (+ acc (car lis))))
+        (else (my-sums-aux (cdr lis) acc))))
+
+
 ;;; MY-SUMS
 ;;;     (my-sums lis)
 ;;;
@@ -125,14 +133,7 @@
 ;;;
 ;;; EXAMPLE
 ;;;     (my-sums '(1 (2 3) (4 (5 6)))) => 21
-(define (my-sums lis)
-    (define (sum-helper lis acc)
-        (cond
-            ((null? lis) acc)
-            ((list? (car lis)) (sum-helper (cdr lis) (sum-helper (car lis) acc)))
-            ((number? (car lis)) (sum-helper (cdr lis) (+ acc (car lis))))
-            (else (sum-helper (cdr lis) acc))))
-    (sum-helper lis 0))
+(define (my-sums lis) (my-sums-aux lis 0))
 
 
 ;;; ITEM E:
