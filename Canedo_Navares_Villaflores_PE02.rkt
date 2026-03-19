@@ -37,6 +37,25 @@
 
 ;;; ITEM B:
 
+
+(define (prime? num)
+    (define (check-divisor d)
+        (cond
+            ((> (* d d) num) #t)
+            ((= (modulo num d) 0) #f)
+            (else (check-divisor (+ d 1)))))
+    (if (< num 2)
+        #f
+        (check-divisor 2)))
+
+
+(define (sumprimes-aux currN result)
+    (cond
+        ((< currN 2) result)
+        ((prime? currN) (sumprimes-aux (- currN 1) (+ result currN)))
+        (else (sumprimes-aux (- currN 1) result))))
+
+
 ;;; SUMPRIMES
 ;;;     (sumprimes n)
 ;;;
@@ -54,22 +73,7 @@
 ;;;
 ;;; EXAMPLE
 ;;;     (sumprimes 10) => 17
-(define (sumprimes n)
-    (define (prime? num)
-        (define (check-divisor d)
-            (cond
-                ((> (* d d) num) #t)
-                ((= (modulo num d) 0) #f)
-                (else (check-divisor (+ d 1)))))
-        (if (< num 2)
-            #f
-            (check-divisor 2)))
-    (define (loop currN result)
-        (cond
-            ((< currN 2) (display result) (newline))
-            ((prime? currN) (loop (- currN 1) (+ result currN)))
-            (else (loop (- currN 1) result))))
-    (loop n 0))
+(define (sumprimes n) (sumprimes-aux n 0))
 
 
 ;;; ITEM C:
