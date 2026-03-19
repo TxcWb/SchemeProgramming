@@ -1,4 +1,4 @@
-;;;; The Scheme code for Programming Exercise 02
+;;;; The Scheme code for Programming Exercise 02"
 
 
 ;;; ITEM A:
@@ -36,6 +36,40 @@
 
 ;;; ITEM B:
 
+;;; SUMPRIMES
+;;;     (sumprimes n)
+;;;
+;;; PURPOSE
+;;;     Displays the sum of all prime numbers from 1 to n.
+;;;
+;;; PARAMETERS
+;;;     n - The upper bound of the range to check for primes.
+;;;
+;;;     currN - The variable passed into the loop, which goes from n down to 2.
+;;;     result - The accumulated sum of all prime numbers found so far.
+;;;
+;;; RETURNS
+;;;     Displays the sum of all prime numbers from 1 to n.
+;;;
+;;; EXAMPLE
+;;;     (sumprimes 10) => 17
+(define (sumprimes n)
+    (define (prime? num)
+        (define (check-divisor d)
+            (cond
+                ((> (* d d) num) #t)
+                ((= (modulo num d) 0) #f)
+                (else (check-divisor (+ d 1)))))
+        (if (< num 2)
+            #f
+            (check-divisor 2)))
+    (define (loop currN result)
+        (cond
+            ((< currN 2) (display result) (newline))
+            ((prime? currN) (loop (- currN 1) (+ result currN)))
+            (else (loop (- currN 1) result))))
+    (loop n 0))
+
 
 ;;; ITEM C:
 
@@ -69,6 +103,31 @@
 
 
 ;;; ITEM D:
+
+;;; MY-SUMS
+;;;     (my-sums lis)
+;;;
+;;; PURPOSE
+;;;     Adds all numbers found in a given list, which may be nested with lists.
+;;;
+;;; PARAMETERS
+;;;     lis - The (possibly nested) list containing numbers to be summed.
+;;;
+;;;     acc - The accumulated sum of all numbers found so far.
+;;;
+;;; RETURNS
+;;;     The sum of all numbers found in the list, including those in nested lists.
+;;;
+;;; EXAMPLE
+;;;     (my-sums '(1 (2 3) (4 (5 6)))) => 21
+(define (my-sums lis)
+    (define (sum-helper lis acc)
+        (cond
+            ((null? lis) acc)
+            ((list? (car lis)) (sum-helper (cdr lis) (sum-helper (car lis) acc)))
+            ((number? (car lis)) (sum-helper (cdr lis) (+ acc (car lis))))
+            (else (sum-helper (cdr lis) acc))))
+    (sum-helper lis 0))
 
 
 ;;; ITEM E:
@@ -109,5 +168,4 @@
 ;;; EXAMPLE
 ;;;     (my-reverse '(1 2 3 4 5)) => '(5 4 3 2 1)
 (define (my-reverse lis) (my-reverse-aux lis '()))
-
 
