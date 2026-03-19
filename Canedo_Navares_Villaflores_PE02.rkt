@@ -1,6 +1,8 @@
 ;;;; The Scheme code for Programming Exercise 02
 
+
 ;;; ITEM A:
+
 ;;; T-ICE
 ;;;     (T-Ice n)
 ;;;
@@ -31,9 +33,12 @@
                  (loop (- currN 1) (cons ans result)))]))] 
     (loop n empty))) 
 
+
 ;;; ITEM B:
 
+
 ;;; ITEM C:
+
 ;;; COUNT-FACTORS
 ;;;     (count-factors n m)
 ;;;
@@ -52,7 +57,6 @@
 ;;;
 ;;; EXAMPLE
 ;;;     (count-factors 64 2) => 6
-
 (define (count-factors n m)
   (local [(define (loop newN result)
             (cond 
@@ -62,6 +66,7 @@
                  [(not (= (modulo newN m) 0)) result] 
                  [else (loop (/ newN m) (+ result 1))])]))] 
           (loop n 0))) 
+
 
 ;;; ITEM D:
 
