@@ -29,6 +29,7 @@
                                 (else currN))))
                      (T-Ice-aux (- currN 1) (cons ans result))))))
 
+
 ;;; T-ICE
 ;;;     (T-Ice n)
 ;;;
@@ -64,10 +65,11 @@
 ;;; RETURNS
 ;;;     True (#t) if no divisors are found up to the square root of num, false (#f) otherwise.
 (define (check-divisor num d)
-  (cond
-    ((> (* d d) num) #t)
-    ((= (modulo num d) 0) #f)
-    (else (check-divisor num (+ d 1)))))
+    (cond
+        ((> (* d d) num) #t)
+        ((= (modulo num d) 0) #f)
+        (else (check-divisor num (+ d 1)))))
+
 
 ;;; PRIME?
 ;;;     (prime? num)
@@ -81,9 +83,10 @@
 ;;; RETURNS
 ;;;     True (#t) if the number is prime, false (#f) otherwise.
 (define (prime? num)
-  (if (< num 2)
-      #f
-      (check-divisor num 2)))
+    (if (< num 2)
+        #f
+        (check-divisor num 2)))
+
 
 ;;; SUMPRIMES-AUX
 ;;;     (sumprimes-aux currN result)
@@ -98,10 +101,11 @@
 ;;; RETURNS
 ;;;     The final sum of all prime numbers in the range.
 (define (sumprimes-aux currN result)
-  (cond
-    ((< currN 2) result)
-    ((prime? currN) (sumprimes-aux (- currN 1) (+ result currN)))
-    (else (sumprimes-aux (- currN 1) result))))
+    (cond
+        ((< currN 2) result)
+        ((prime? currN) (sumprimes-aux (- currN 1) (+ result currN)))
+        (else (sumprimes-aux (- currN 1) result))))
+
 
 ;;; SUMPRIMES
 ;;;     (sumprimes n)
@@ -136,11 +140,12 @@
 ;;; RETURNS
 ;;;     The number of times 'm' is a factor of 'n', or "None" if count is 0.
 (define (count-factors-aux newN m result)
-  (cond 
-    ((= newN 0) result)
-    ((not (= (modulo newN m) 0)) 
-     (if (= result 0) "None" result))
-    (else (count-factors-aux (/ newN m) m (+ result 1)))))
+    (cond 
+        ((= newN 0) result)
+        ((not (= (modulo newN m) 0)) 
+            (if (= result 0) "None" result))
+        (else (count-factors-aux (/ newN m) m (+ result 1)))))
+
 
 ;;; COUNT-FACTORS
 ;;;     (count-factors n m)
@@ -175,11 +180,12 @@
 ;;; RETURNS
 ;;;     The total sum of all numbers found within the list structure.
 (define (my-sums-aux lis acc)
-  (cond
-    ((null? lis) acc)
-    ((list? (car lis)) (my-sums-aux (cdr lis) (my-sums-aux (car lis) acc)))
-    ((number? (car lis)) (my-sums-aux (cdr lis) (+ acc (car lis))))
-    (else (my-sums-aux (cdr lis) acc))))
+    (cond
+        ((null? lis) acc)
+        ((list? (car lis)) (my-sums-aux (cdr lis) (my-sums-aux (car lis) acc)))
+        ((number? (car lis)) (my-sums-aux (cdr lis) (+ acc (car lis))))
+        (else (my-sums-aux (cdr lis) acc))))
+
 
 ;;; MY-SUMS
 ;;;     (my-sums lis)
