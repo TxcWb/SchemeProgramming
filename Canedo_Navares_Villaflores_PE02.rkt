@@ -1,6 +1,8 @@
 ;;;; The Scheme code for Programming Exercise 02"
-;;;;
+
+
 ;;; ITEM A:
+
 ;;; T-ICE
 ;;;     (T-Ice n)
 ;;;
@@ -31,7 +33,9 @@
                          (loop (- currN 1) (cons ans result))))))
     (loop n '()))
 
+
 ;;; ITEM B:
+
 ;;; SUMPRIMES
 ;;;     (sumprimes n)
 ;;;
@@ -66,7 +70,9 @@
             (else (loop (- currN 1) result))))
     (loop n 0))
 
+
 ;;; ITEM C:
+
 ;;; COUNT-FACTORS
 ;;;     (count-factors n m)
 ;;;
@@ -95,7 +101,9 @@
                         (else (loop (/ newN m) (+ result 1)))))))
     (loop n 0))
 
+
 ;;; ITEM D:
+
 ;;; MY-SUMS
 ;;;     (my-sums lis)
 ;;;
@@ -121,7 +129,9 @@
             (else (sum-helper (cdr lis) acc))))
     (sum-helper lis 0))
 
+
 ;;; ITEM E:
+
 ;;; MY-REVERSE-AUX
 ;;;     (my-reverse-aux lis acc)
 ;;;
@@ -142,6 +152,7 @@
         acc
         (my-reverse-aux (cdr lis) (cons (car lis) acc))))
 
+
 ;;; MY-REVERSE
 ;;;     (my-reverse lis)
 ;;;
@@ -157,5 +168,4 @@
 ;;; EXAMPLE
 ;;;     (my-reverse '(1 2 3 4 5)) => '(5 4 3 2 1)
 (define (my-reverse lis) (my-reverse-aux lis '()))
-
 
