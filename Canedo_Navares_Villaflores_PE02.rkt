@@ -3,6 +3,18 @@
 
 ;;; ITEM A:
 
+
+(define (T-Ice-aux currN result)
+        (cond 
+            ((= currN 0) result)
+            (else 
+                (let ((ans (cond 
+                                ((and (= (modulo currN 2) 0) (= (modulo currN 3) 0)) "T-ICE")
+                                ((= (modulo currN 2) 0) "T")
+                                ((= (modulo currN 3) 0) "ICE")
+                                (else currN))))
+                     (T-Ice-aux (- currN 1) (cons ans result))))))
+
 ;;; T-ICE
 ;;;     (T-Ice n)
 ;;;
@@ -20,18 +32,7 @@
 ;;;
 ;;; EXAMPLE
 ;;;     (T-Ice 10) => (1 "T" "ICE" "T" 5 "T-ICE" 7 "T" "ICE" "T")
-(define (T-Ice n)
-    (define (loop currN result)
-            (cond 
-                ((= currN 0) result)
-                (else 
-                    (let ((ans (cond 
-                                    ((and (= (modulo currN 2) 0) (= (modulo currN 3) 0)) "T-ICE")
-                                    ((= (modulo currN 2) 0) "T")
-                                    ((= (modulo currN 3) 0) "ICE")
-                                    (else currN))))
-                         (loop (- currN 1) (cons ans result))))))
-    (loop n '()))
+(define (T-Ice n) (T-Ice-aux n '()))
 
 
 ;;; ITEM B:
