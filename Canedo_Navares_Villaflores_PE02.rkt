@@ -78,13 +78,14 @@
 
 ;;; ITEM C:
 
-(define (count-factors-aux newN result)
+(define (count-factors-aux newN m result)
         (cond 
             ((= newN 0) result)
             (else
                 (cond 
                     ((not (= (modulo newN m) 0)) result)
-                    (else (count-factors-aux (/ newN m) (+ result 1)))))))
+                    (else (count-factors-aux (/ newN m) m (+ result 1)))))))
+
 
 ;;; COUNT-FACTORS
 ;;;     (count-factors n m)
@@ -104,7 +105,7 @@
 ;;;
 ;;; EXAMPLE
 ;;;     (count-factors 64 2) => 6
-(define (count-factors n m) (count-factors-aux n 0))
+(define (count-factors n m) (count-factors-aux n m 0))
 
 
 ;;; ITEM D:
